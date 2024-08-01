@@ -44,7 +44,7 @@ def dashboard():
         GradingDate = st.date_input("Please enter last grading date", format="DD/MM/YYYY")
         if st.button("Add User"):
             with open("black-tiger-ma.csv", "a", newline='') as file:
-                file.write(username + "," + password + "," + surname + "," + forename + "," + str(DOB) + "," + grade + "," + str(GradingDate) + "\n")
+                file.write(username + "," + password + "," + surname + "," + forename + "," + str(DOB) + "," + str(grade) + "," + str(GradingDate) + "\n")
     elif choice == ":rainbow[Remove]":
         username = st.text_input("Please enter username to remove")
         if st.button("Remove User"):
