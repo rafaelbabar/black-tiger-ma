@@ -88,7 +88,7 @@ def login():
                         syllabus12s = "White/Red: Strikes - "
                         syllabus12g = "White/Red: Grapples - " 
                         st.write("Hi " + forename + " our records indicate you are a " + belt + " belt." + " Your next belt is " + nbelt)
-                        st.write(Grade)
+                        st.write("This is a " + Grade)
                         if belt == "3 Dan":
                             st.write(syllabus4db)
                             st.write(syllabus4ds)
