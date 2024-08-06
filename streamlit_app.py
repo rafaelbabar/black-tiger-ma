@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import datetime
-#D:\OneDrive\Desktop\Projects>streamlit run black-tiger-ma-v1.py
+#D:\OneDrive\Desktop\Projects>streamlit run black-tiger-ma-v2.py
 st.image("black-tiger-ma.jpg")
 def login():
     selection = st.radio("Please choose Login or New User",
@@ -63,7 +63,7 @@ def dashboard():
         st.session_state.logged_in = False
     st.title("User Management and Login Record")
     choice = st.radio("Please select add or remove",
-    [":rainbow[Add]", ":rainbow[Remove]", ":rainbow[View]"])
+    [":rainbow[Add]", ":rainbow[Remove]",  ":rainbow[Promote]",":rainbow[View]"])
     if choice == ":rainbow[Add]":
         username = st.text_input("Please enter email to add user")
         password = st.text_input("Please enter password for user", type="password")
@@ -85,7 +85,23 @@ def dashboard():
                 df.to_csv("black-tiger-ma.csv", index=False)
                 st.success(f"User {username} removed successfully.")
             else:
-                st.error(f"Username {username} not found in the data.")          
+                st.error(f"Username {username} not found in the data.")
+    elif choice == ":rainbow[Promote]":
+        username = st.text_input("Please enter username to promote")
+        df = pd.read_csv("black-tiger-ma.csv")
+        if username in df["username"].values:
+            grade = st.selectbox("Please select the current grade",
+            (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "1 Dan", "2 Dan", "3 Dan", "4 Dan"))
+            GradingDate = st.date_input("Please enter the last grading date", format="DD/MM/YYYY")
+            if st.button("Promote User"):
+                # Update the user's grade and grading date
+                df.loc[df["username"] == username, "Grade"] = grade
+                df.loc[df["username"] == username, "GradingDate"] = GradingDate         
+                # Save the updated DataFrame back to the CSV file
+                df.to_csv("black-tiger-ma.csv", index=False)         
+                st.success(f"User {username} has been promoted to {grade} with grading date {GradingDate}")
+        else:
+            st.error("Username not found")
     else:
         df = pd.read_csv("black-tiger-ma.csv")
         st.dataframe(df)
