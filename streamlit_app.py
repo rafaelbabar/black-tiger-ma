@@ -35,13 +35,13 @@ def login():
                         file.write(username + "," + str(datetime.datetime.now().replace(microsecond=0)) + "\n")                
                         user_found = True
                         belts = ["4 Dan","3 Dan","2 Dan","1 Dan","Brown","Brown/White","Green","Green/White","Yellow","Yellow/White","Blue","Blue/White","Red","Red/White","White/Red","White"]
-                        GradeI = int(Grade) + 3
-                        GradeN = int(Grade) + 2
-                        belt = belts[GradeI]
-                        nbelt = belts[GradeN]
-                        st.write("Hi " + forename + " our records indicate you are a " + belt + " belt." + " Your next belt is " + nbelt)
-                        st.write("You are a " + Grade + " kyu")
-                        if belt == "3 Dan":
+                        belt_index = belts.index(Grade)  
+                        if belt_index > 0:  
+                            nbelt = belts[belt_index - 1]
+                        else:
+                            nbelt = "You have achieved the highest belt"
+                        st.write("Hi " + forename + " our records indicate you are a " + Grade + " belt." + " Your next belt is " + nbelt)
+                        if Grade == "3 Dan":
                             st.subheader("4 Dan - sanddan: All basics from All Kyu Grades")                            
                             st.write("For grading: - Dan Grades are done in November of Each year.")
                             st.write("4 years as Sandan")
@@ -59,7 +59,7 @@ def login():
                             st.write("Sparring 30×1.5 minute rounds")
                             st.subheader("Bag Test")
                             st.write("10 minutes ‘bag work’ – 4 mins round kicks, 2 mins front kicks, 2 mins front punches, and 2 mins front punches/kicks") 
-                        elif belt == "2 Dan":
+                        elif Grade == "2 Dan":
                             st.subheader("3 Dan - Nidan: All basics from All Kyu Grades")                            
                             st.write("For grading: - Dan Grades are done in November of Each year.")
                             st.write("3 years as Nidan")
@@ -79,7 +79,7 @@ def login():
                             st.write("1 mile Run/Jog without stopping")
                             st.subheader("Bag Test")
                             st.write("10 minutes ‘bagwork’ – 4 mins round kicks, 2 mins front kicks, 2 mins front punches, and 2 mins front punches/kicks")                        
-                        elif belt == "1 Dan":
+                        elif Grade == "1 Dan":
                             st.subheader("2 Dan - Shodan: All basics from All Kyu Grades")                            
                             st.write("For grading: - Dan Grades are done in November of Each year.")
                             st.write("2 years as Shodan")
@@ -87,7 +87,7 @@ def login():
                             st.subheader("1 Dan: Grapples")
                             st.write("Grappling Method – All Grappling Methods, Type 1 to Type 9")
                             st.write("All Throws and Groundwork, plus")
-                            at.write("Nami-juji-jime (Normal cross strangle)")                            
+                            st.write("Nami-juji-jime (Normal cross strangle)")                            
                             st.write("Ude-hishigi-Sankaku-gatame (Triangular lock)")                            
                             st.write("Sode-guruma-jime (Sleeve wheel strangle)")                            
                             st.subheader("2 Dan: Evasion")                            
@@ -106,7 +106,7 @@ def login():
                             st.write("Morote gari (諸手刈, open arms reaping), or Udewa (腕輪, bracelet), ‘Arm Ring’")
                             st.write("Tsubame Gaeshi: ‘Swallow Reversal’")
                             st.write("Katawa Guruma: ‘Cripple Wheel’")
-                        elif belt == "Brown":                            
+                        elif Grade == "Brown":                            
                             st.subheader("1 Dan - Shodan: Basics Number 10 Kihon KU")
                             st.write("For grading: - Dan Grades are done in November of Each year.")
                             st.write("Candidates must be 1st Kyu before the November of the previous year to be eligible")
@@ -132,7 +132,7 @@ def login():
                             st.subheader("1 Dan: Throws")
                             st.write("O Soto gari (大外刈, major outer reaping))")
                             st.write("Harai Goshi (払腰): Sweeping hip throw")                            
-                        elif belt == "Brown/White":
+                        elif Grade == "Brown/White":
                             st.subheader("Brown: Basics Number 10 Kihon KU")
                             st.subheader("For grading: - 6 months as 2nd Kyu")
                             st.write("All basic Pad work performed from ‘Fighting Stance’ Left Leg forward then right leg forward.")
@@ -151,7 +151,7 @@ def login():
                             st.subheader("Kick combination")
                             st.write("Each performed 5 times")
                             st.write("Crescent kick to head off the front leg, step across, jumping back round kick off the Left leg, finish right leg forward. Alternative legs")
-                            at.write("Jumping back round kick off the Left leg, Low Spinning Sweeping Kick finish right leg forward. Alternative legs")    
+                            st.write("Jumping back round kick off the Left leg, Low Spinning Sweeping Kick finish right leg forward. Alternative legs")    
                             st.subheader("Brown: Grapples")
                             st.write("Grappling Method – Type 9")
                             st.write("Hadaka-jime (Naked strangle)")                            
@@ -168,7 +168,7 @@ def login():
                             st.write("O uchi gari (大内刈, major inner reaping)")
                             st.write("Kibisu gaeshi (踵返, Ankle Pick")
                             st.write("Sangaku-jime (Triangular strangle)")                            
-                        elif belt == "Green":                            
+                        elif Grade == "Green":                            
                             st.subheader("Brown/White: Basics Number 9 Kihon KU")
                             st.subheader("Kicks")                            
                             st.write("All basic kicks performed from ‘Fighting Stance’ left leg forward then right leg forward. .")
@@ -196,7 +196,7 @@ def login():
                             st.subheader("Brown/White: Throws")
                             st.write("Ko uchi gari (小内刈, minor inner reaping) – similar to Ashi Barai")
                             st.write("Tate-shiho-gatame (Straight four-corner hold)")
-                        elif belt == "Green/White":                            
+                        elif Grade == "Green/White":                            
                             st.subheader("Green: Strikes")
                             st.write("All basic strikes performed from ‘Parallel stance’ feet shoulder width apart.")
                             st.write("Each performed 10 times (Kiai on 10)")
@@ -231,7 +231,7 @@ def login():
                             st.subheader("Green: Throws")                            
                             st.write("Ippon Seoi Nage, One Handed Shoulder Throw")
                             st.write("Yoko-shiho-gatame (Side four-corner hold)")                            
-                        elif belt == "Yellow":
+                        elif Grade == "Yellow":
                             st.subheader("Green/White: Strikes")
                             st.write("All basic strikes performed from ‘Parallel stance’ feet shoulder width apart.")
                             st.write("Each performed 10 times (Kiai on 10)")
@@ -265,7 +265,7 @@ def login():
                             st.write("2 mins each include techniques from basics above")                            
                             st.subheader("Green/White: Throws")
                             st.write("Uki Goshi (浮腰): Floating half-hip throw")
-                        elif belt == "Yellow/White":
+                        elif Grade == "Yellow/White":
                             st.subheader("Yellow: Basics")
                             st.subheader("Yellow: Strikes")
                             st.write("All basic strikes performed from ‘Parallel stance’ feet shoulder width apart.")
@@ -299,7 +299,7 @@ def login():
                             st.write("2 mins hammer fist 2 mins round kicks ribs 2 mins knife hand and round kicks head")                            
                             st.subheader("Yellow: Throws")
                             st.write("Sukui Nage (掬い投, Scooping Throw) Front Stance")
-                        elif belt == "Blue":
+                        elif Grade == "Blue":
                             st.subheader("Yellow/White: Basics")
                             st.write("All 3 basic Blocks performed from ‘Fighting stance’ left leg forward then right leg forward.")
                             st.write("Each performed 5 times")
@@ -333,7 +333,7 @@ def login():
                             st.write("2 mins teach include techniques from basics above (with Thai Pads)")                            
                             st.subheader("Yellow/White: Throws")
                             st.write("Deashi barai (足掃, foot sweep) ")
-                        elif belt == "Blue/White":
+                        elif Grade == "Blue/White":
                             st.subheader("Blue: Basics")
                             st.write("All 3 basic Blocks performed from ‘Fighting stance’ left leg forward then right leg forward.")
                             st.write("Each performed 5 times")
@@ -366,7 +366,7 @@ def login():
                             st.write("2 mins teach include techniques from basics above (with Thai Pads)")                            
                             st.subheader("Blue/White: Throws")
                             st.write("Kubi Nage / Kubi Wa: ‘Neck Ring’ / neck throw")                           
-                        elif belt == "Red":
+                        elif Grade == "Red":
                             st.subheader("Blue/White: Basics")
                             st.write("First 2 blocks in parallel stance, last 2 basic Blocks performed from ‘Fighting stance’ left leg forward then right leg forward.")
                             st.write("Each performed 6 times")
@@ -403,7 +403,7 @@ def login():
                             st.write("2 mins punching, 2 mins front kicks, 2 mins punching and front kicks")
                             st.subheader("Blue/White: Breakfalls")
                             st.write("Forward Roll, Previous Breakfalls")
-                        elif belt == "Red/White":
+                        elif Grade == "Red/White":
                             st.subheader("Red: Basics")
                             st.write("All 3 basic Blocks performed from ‘Fighting stance’ left leg forward then right leg forward.")
                             st.write("Each performed 5 times")
@@ -433,7 +433,7 @@ def login():
                             st.write("Technical Standup")
                             st.subheader("Kata")
                             st.write("Red Belt for Juniors / Blue Belt for Seniors")
-                        elif belt == "White/Red":
+                        elif Grade == "White/Red":
                             st.subheader("Red/White: Basics")
                             st.write("As previous grades")
                             st.subheader("Red/White: Strikes")
@@ -442,7 +442,7 @@ def login():
                             st.write("2 mins punching")
                             st.subheader("Red/White: Breakfalls")
                             st.write("As previous grades")
-                        elif belt == "White":
+                        elif Grade == "White":
                             st.subheader("White/Red: Basics")
                             st.write("All 3 basic stances left leg forward then right leg forward.")
                             st.write("Each performed 5 times.")
@@ -500,7 +500,7 @@ def login():
         forename = st.text_input("Please enter forename")
         DOB = st.date_input("Please enter date of birth", format="DD/MM/YYYY")
         grade = st.selectbox("Please current grade",
-        (1,2,3,4,5,6,7,8,9,10,11,12,"1 Dan","2 Dan","3 Dan","4 Dan"))
+        ("3 Dan","2 Dan","1 Dan","Brown","Brown/White","Green","Green/White","Yellow","Yellow/White","Blue","Blue/White","Red","Red/White","White/Red","White"))
         GradingDate = st.date_input("Please enter last grading date", format="DD/MM/YYYY")
         if st.button("Add User"):
             with open("black-tiger-ma.csv", "a", newline='') as file:
@@ -519,7 +519,7 @@ def dashboard():
         forename = st.text_input("Please enter forename")
         DOB = st.date_input("Please enter date of birth", format="DD/MM/YYYY")
         grade = st.selectbox("Please current grade",
-        (1,2,3,4,5,6,7,8,9,10,11,12,"1 Dan","2 Dan","3 Dan","4 Dan"))
+        ("3 Dan","2 Dan","1 Dan","Brown","Brown/White","Green","Green/White","Yellow","Yellow/White","Blue","Blue/White","Red","Red/White","White/Red","White"))
         GradingDate = st.date_input("Please enter last grading date", format="DD/MM/YYYY")
         if st.button("Add User"):
             with open("black-tiger-ma.csv", "a", newline='') as file:
@@ -539,7 +539,7 @@ def dashboard():
         df = pd.read_csv("black-tiger-ma.csv")
         if username in df["username"].values:
             grade = st.selectbox("Please select the current grade",
-            (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "1 Dan", "2 Dan", "3 Dan", "4 Dan"))
+            ("3 Dan","2 Dan","1 Dan","Brown","Brown/White","Green","Green/White","Yellow","Yellow/White","Blue","Blue/White","Red","Red/White","White/Red","White"))
             GradingDate = st.date_input("Please enter the last grading date", format="DD/MM/YYYY")
             if st.button("Promote User"):
                 # Update the user's grade and grading date
@@ -563,5 +563,7 @@ if st.session_state.logged_in:
     dashboard()
 else:
     login()
+
+
 
 
