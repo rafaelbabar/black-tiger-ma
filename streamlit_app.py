@@ -42,7 +42,7 @@ def login():
                             nbelt = "You have achieved the highest belt"
                         st.write("Hi " + forename + " our records indicate you are a " + Grade + " belt." + " Your next belt is " + nbelt)
                         if Grade == "3 Dan":
-                            st.subheader("4 Dan - sanddan: All basics from All Kyu Grades")                            
+                            st.subheader("4 Dan - Sandan: All basics from All Kyu Grades")                            
                             st.write("For grading: - Dan Grades are done in November of Each year.")
                             st.write("4 years as Sandan")
                             st.write("This is a partially technical grade as most candidates reaching this level would have spent many years practicing and possibly teaching everything in the syllabus already.")
@@ -84,7 +84,7 @@ def login():
                             st.write("For grading: - Dan Grades are done in November of Each year.")
                             st.write("2 years as Shodan")
                             st.write("All basics from All Kyu Grades")                        
-                            st.subheader("1 Dan: Grapples")
+                            st.subheader("2 Dan: Grapples")
                             st.write("Grappling Method – All Grappling Methods, Type 1 to Type 9")
                             st.write("All Throws and Groundwork, plus")
                             st.write("Nami-juji-jime (Normal cross strangle)")                            
@@ -563,6 +563,8 @@ if st.session_state.logged_in:
     dashboard()
 else:
     login()
+
+
 
 
 
